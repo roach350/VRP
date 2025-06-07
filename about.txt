@@ -1,0 +1,48 @@
+VoLTE Retrofit Project
+
+Goal:
+	Build an opensource ecosystem for rebasing older (Pre LTE) feature phones.
+
+	Replace obsolite hardware of old cell phones (modem, motherboard) with new components (VoLTE modem, SBC, etc.)
+	
+Implementation:
+	Use Proven Techbonoligies:
+		Linux based
+		Use already existing projects (ModemManager, etc.)
+		Off the shelf VoLTE capable modems (e.g. Quectel EG25)
+	Build a community:
+		Open source "ports" that contain driver implementations for old hardware (keypads, displays, etc.)
+ 		Create a unified platform where programs can be written once and run on all phones
+		
+
+Features (core):
+	Voice Calling (obvisouly)
+	SMS
+	MMS (including Group MMS)
+	USB tethering
+	T-9 support with predictive text
+	Web/native desktop portal for configuring and using certian features (SMS/MMS, etc.) [web server runs on phone hosting a portal and other devices can log into that portal and use certain features of the phone]
+	PIM features (contacts, detailed call statistics, calander, reminders, etc.)
+	Fast performance (written in C, C++ only, no bloat)
+	File manager
+	Text Editor
+	Other linux programs/scripts (adapted for low resolution LCDs of course)
+	
+	
+Features (extra):
+	Games
+	Speech to text (runs on device)
+	Music player
+	GPS navigation (for supported modems)
+	E-mail client
+
+Hardware Features (potentially):
+	kill switches
+	external antennas (depends on device)
+	bluetooth (with hands free)
+
+
+New device potential:
+	The work produced by this project should lower the barrier of entry for creating entirely new feature phones
+
+

@@ -1,0 +1,34 @@
+VoLTE Retrofit Project Software Stack
+
+VRP (VoLTE Retrofit Project): refers to software running on top of MM that handles telephony, SMS, MMS, etc.
+
+
+TOP
+	VRP UI programs (char LCD software, color LCD framebuffer, wayland/x11 app etc.)
+	VRP core-applications (vrp-dialer, vrp-contacts, vrp-messages, vrp-log, vrp-config, vrp-cell_info, vrp-pim)
+	vrp-backend (interfaces with MM, provices a telephony and SMS/MMS backend for VRP applications)
+	ModemManager (MM)
+
+BOTTOM
+
+
+
+
+VRP core-applications
+	provide APIs for any UI programs
+	run as daemons in the background
+	have their own CLI interface
+	interface with a local database using simple plain text langauge
+	
+vrp-backend
+	provies a unified API for VRP applications
+
+Other VRP apps
+	refers to any apps which core functionality is not dependent on core-applications
+	UI specific
+	Examples:
+		file managers
+		text editors
+		music players
+
+
