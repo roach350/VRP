@@ -40,7 +40,7 @@ As the minimalist phone market is expanding, there are more and more options bec
 ## Techincal Overview
 
 ### How VoLTE is achieved
-The most important part of this project is VoLTE support. This project uses ModemManager (MM) as the cellular software backend, MM supports many modems including Quectel's EG25 series, which supports VoLTE natively. This modem is also used in the PinePhone (an open source Linux smartphone) making it one of the very few Smartphones supported by mainline Linux with a working and somewhat reliable VoLTE implementation. Open source software VoLTE implementations are in the works but progress has been very slow.
+The most important part of this project is VoLTE support. This project uses ModemManager (MM) as the cellular software backend, MM supports many modems including Quectel's EG25 series, which supports VoLTE natively. This modem is also used in the PinePhone (an open source Linux smartphone) making it one of the very few Smartphones supported by mainline Linux with a working and somewhat reliable VoLTE implementation. Open source software VoLTE implementations are in the works but progress has been very slow. This project essentially relies on the modem itself having a working VoLTE implementation, so any VoLTE capable modem supported by MM should work with this project.
 
 
 
