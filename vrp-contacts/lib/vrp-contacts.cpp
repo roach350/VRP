@@ -1,21 +1,22 @@
 #include "vrp-contacts.h"
+#include <cstring.h>
 
 
 
-
-
+/* vrp-contacts */
 void contact_t::setFirst(const char *first_in){
+	strcpy(first, first_in);
 } 
 
-
-
-
-
 void contact_t::delNumber(const char *indexVal){
+	
+
 }
 void contact_t::delEmail(const char *indexVal){
 }
 void contact_t::addNumber(const char *numb, const char *indexVal){
+	
+
 }
 void contact_t::addEmail(const char *email, const char *indexVal){
 }
