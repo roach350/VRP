@@ -1,24 +1,58 @@
-#include "vrp-contacts.h"
 #include <cstring>
-
-
-
+#include "vrp-contacts.h"
+#include "lib.h"
 /* vrp-contacts */
 
-void contact_t::addNumber(const char *numb, const char *indexVal){
+
+/* consructor */
+
+contact_t::contact_t(){
+
+	initStr(phone_index, 256);
+	initStr(phone_numbers, 256);
+	initStr(email_index, 512);
+	initStr(email_addresses, 512);
+		
+
+}
+
+int contact_t::addNumber(const char *numb, const char *indexVal){
 	// check current number list and index list
-	// append if space is avalible
+	// append if space is avaliable
+	int aval_index_size = 256 - countNonZero(phone_index, 256);
+	int aval_number_size = 256 - countNonZero(phone_numbers, 256);
+	
+	if (strlen(indexVal) < aval_index_size){
+		// append index
+		appendStr(phone_index, indexVal, strlen(phone_index));
+		
+		return 1; // success
+	}else{
+		return 0; //failure
+	}
 
-}
-void contact_t::addEmail(const char *email, const char *indexVal){
-}
+	if (strlen(numb) < aval_number_size){
+		// append index
+		appendStr(phone_numbers, numb, strlen(phone_numbers));
+		
+		return 1; // success
+	}else{
+		return 0; //failure
+	}
 
 
-void contact_t::delNumber(const char *indexVal){
 	
 
 }
-void contact_t::delEmail(const char *indexVal){
+int contact_t::addEmail(const char *email, const char *indexVal){
+}
+
+
+int contact_t::delNumber(const char *indexVal){
+	
+
+}
+int contact_t::delEmail(const char *indexVal){
 }
 
 

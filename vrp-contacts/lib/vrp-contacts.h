@@ -4,8 +4,6 @@
 */
 
 
-
-
 class contact_t{
 
 	private:
@@ -38,16 +36,17 @@ class contact_t{
 
 	public:
 		/* constructors */
-
+		/* default */
+		contact_t();
 		// build simple contact
 		contact_t(char *first, char *last);
 		
 		
 		/* setters */
-		void delNumber(const char *indexVal);
-		void delEmail(const char *indexVal);		
-		void addNumber(const char *numb, const char *indexVal);
-		void addEmail(const char *email, const char *indexVal);
+		int delNumber(const char *indexVal);
+		int delEmail(const char *indexVal);		
+		int addNumber(const char *numb, const char *indexVal);
+		int addEmail(const char *email, const char *indexVal);
 		void setFirst(const char *first_in);
 		void setMiddle(const char *middle_in);
 		void setLast(const char *last_in);
