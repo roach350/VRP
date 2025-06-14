@@ -15,7 +15,7 @@ char *mode, *verb1, *verb2;
 #include <cstring>
 
 #include "config.h"
-//#include "lib/vrp-contacts.h"
+#include "lib/vrp-contacts.h"
 
 
 void printHelp(){
@@ -29,6 +29,22 @@ void printHelp(){
 
 }
 
+
+
+void test(){
+
+	contact_t person;
+	person.setFirst("Joe"); person.setMiddle("Retard"); person.setLast("Johnson");
+	person.addNumber("3504548100", "Mobile");
+	person.addNumber("6666666666", "Home");
+	person.addEmail("test@gmail.com", "Personal");
+	person.addEmail("test@outlook.com", "Work");
+	person.addEmail("test@uri.edu", "School");
+	person.print();
+
+
+
+}
 
 
 int main(int argc, char *argv[]){
@@ -56,8 +72,11 @@ int main(int argc, char *argv[]){
 		printHelp();
 		
 	}
-
-
+	if (strcmp(mode, "test") == 0){
+		test();
+		
+	}
+	
 
 
 	return 0;	

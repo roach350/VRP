@@ -1,3 +1,4 @@
+#include <iostream>
 #include <cstring>
 #include "vrp-contacts.h"
 #include "lib.h"
@@ -12,7 +13,12 @@ contact_t::contact_t(){
 	initStr(phone_numbers, 256);
 	initStr(email_index, 512);
 	initStr(email_addresses, 512);
-		
+	month = 1; day = 1; year = 1970;
+	initStr(note, 1024);
+	initStr(address, 256);
+	initStr(org, 64);
+	initStr(title, 64);
+	initStr(nickname, 64);		
 
 }
 
@@ -22,11 +28,11 @@ int contact_t::addNumber(const char *numb, const char *indexVal){
 	int aval_index_size = 256 - countNonZero(phone_index, 256);
 	int aval_number_size = 256 - countNonZero(phone_numbers, 256);
 	
+
 	if (strlen(indexVal) < aval_index_size){
 		// append index
 		appendStr(phone_index, indexVal, strlen(phone_index));
 		
-		return 1; // success
 	}else{
 		return 0; //failure
 	}
@@ -35,22 +41,47 @@ int contact_t::addNumber(const char *numb, const char *indexVal){
 		// append index
 		appendStr(phone_numbers, numb, strlen(phone_numbers));
 		
-		return 1; // success
 	}else{
 		return 0; //failure
 	}
 
-
+	return 1; //success
 	
 
 }
 int contact_t::addEmail(const char *email, const char *indexVal){
+	// check current number list and index list
+	// append if space is avaliable
+	int aval_index_size = 256 - countNonZero(email_index, 256);
+	int aval_email_size = 256 - countNonZero(email_addresses, 256);
+	
+
+	if (strlen(indexVal) < aval_index_size){
+		// append index
+		appendStr(email_index, indexVal, strlen(email_index));
+		
+	}else{
+		return 0; //failure
+	}
+
+	if (strlen(email) < aval_email_size){
+		// append index
+		appendStr(email_addresses, email, strlen(email_addresses));
+		
+	}else{
+		return 0; //failure
+	}
+
+	return 1; //success
+	
+
 }
 
 
 int contact_t::delNumber(const char *indexVal){
+	int number_count = countChar(phone_index, ',');	
 	
-
+	
 }
 int contact_t::delEmail(const char *indexVal){
 }
@@ -131,5 +162,25 @@ char* contact_t::getNote(){
 }
 char* contact_t::getAddress(){
 	return address;
+}
+
+/* print */
+
+void contact_t::print(){
+
+	std::cout << "Contact Card\n";
+	std::cout << "\tName: " << first << ' ' << middle << ' ' << last << "\n\n";
+
+	std::cout << "\tPhone Index: " << phone_index << '\n';
+	std::cout << "\tPhone Numbers: " << phone_numbers << '\n';	
+	std::cout << "\tEmail Index: " << email_index << '\n';
+	std::cout << "\tEmail Addresses: " << email_addresses << "\n\n";
+
+	std::cout << "\tDate Of Birth: " << month << '/' << day << '/' << year << '\n';
+	std::cout << "\tTitle: " << title << '\n';
+	std::cout << "\tNickname: " << nickname << '\n';
+	std::cout << "\tOrganization: " << org << '\n';
+
+
 }
 
