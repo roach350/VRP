@@ -51,3 +51,17 @@ int countChar(char *str, int key){
 	return count;
 
 }
+
+void strncmpExclude(char *dest, const char *src, int key, int len){
+	int j = 0;
+	for (int i = 0; i < len; i++){
+		
+		if (src[i] != key){
+			dest[j] = src[i];
+			j++;
+		}
+	}
+}
+
+
+

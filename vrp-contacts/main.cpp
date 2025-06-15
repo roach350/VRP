@@ -37,12 +37,18 @@ void test(){
 	person.setFirst("Joe"); person.setMiddle("Retard"); person.setLast("Johnson");
 	person.addNumber("3504548100", "Mobile");
 	person.addNumber("6666666666", "Home");
+	person.addNumber("4114114200", "Work");
 	person.addEmail("test@gmail.com", "Personal");
 	person.addEmail("test@outlook.com", "Work");
 	person.addEmail("test@uri.edu", "School");
 	person.print();
+	person.delNumber("Work");
+	person.print();
 
-
+	person.addNumber("3602538667", "Main");
+	person.print();
+	person.delNumber("Home");
+	person.print();
 
 }
 
@@ -68,11 +74,11 @@ int main(int argc, char *argv[]){
 
 
 
-	if (strcmp(mode, "help") == 0){
+	if (strncmp(mode, "help", 4) == 0){
 		printHelp();
 		
 	}
-	if (strcmp(mode, "test") == 0){
+	if (strncmp(mode, "test", 4) == 0){
 		test();
 		
 	}
