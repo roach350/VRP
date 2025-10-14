@@ -1,0 +1,6 @@
+An open source platform for enhancing usuability of cellular phonesreliant on deprecated technologies.
+
+
+
+
+

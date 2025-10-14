@@ -15,7 +15,7 @@ As the minimalist phone market is expanding, there are more and more options bec
 - MMS (including Group MMS)<br>
 - USB tethering<br>
 - T-9 support with predictive text<br>
-- Fast performance (written in C, C++ only, no bloat)<br>
+- Fast performance (core components written in C only, no bloat)<br>
 - PIM features (contacts, detailed call statistics, calendar, reminders, etc.)<br>
 - File manager<br>
 - Text Editor<br>
