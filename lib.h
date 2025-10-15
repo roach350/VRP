@@ -1,3 +1,4 @@
+#pragma once
 
 void initStr(char *str, int len){
 	/* initiate a string with a series of null terminators */

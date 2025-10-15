@@ -1,1 +1,1 @@
-gcc main.cpp -o vrp-contacts
+gcc main.c vrp-contacts.c -o vrp-contacts

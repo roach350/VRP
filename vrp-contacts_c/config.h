@@ -1,3 +1,3 @@
-
-
-char version_string[] = "alpha";
+#define VRP_VERSION "alpha"
+#define ENTRIES_PER_CONTACT 16
+#define ENTRY_LENGTH 256 
