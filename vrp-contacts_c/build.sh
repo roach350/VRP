@@ -1,1 +1,1 @@
-gcc main.c vrp-contacts.c -o vrp-contacts
+gcc main.c ../lib.c vrp-contacts.c database.c -o vrp-contacts

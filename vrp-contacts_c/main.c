@@ -13,8 +13,9 @@ char *mode, *verb1, *verb2;
 #include <stdlib.h>
 #include <string.h>
 #include "config.h"
-#include "vrp-contacts.h"
 
+#include "vrp-contacts.h"
+#include "database.h"
 
 void printHelp(){
 	printf("vrp-contacts");
@@ -50,6 +51,11 @@ void test(){
 
 	contact_print(&t);
 	contact_free(&t);
+
+	struct contact_database_t test_db;
+	database_contact_init(&test_db, "test.db");
+	database_contact_load(&test_db);
+
 	
 }
 

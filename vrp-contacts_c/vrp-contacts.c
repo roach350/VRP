@@ -5,11 +5,11 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
 #include <string.h>
+
 #include "config.h"
 #include "../lib.h"
-
-
 #include "vrp-contacts.h"
 
 
@@ -135,7 +135,20 @@ void contact_set_address(struct contact_t *c, const char *addr){
 
 
 
-int contact_del_number(struct contact_t *c, int index);
+int contact_del_number(struct contact_t *c, int index){
+	/*
+	TODO
+	allocate new memory
+	copy contents of old array, omitting deleted element
+	free old memeory
+	
+	*/
+
+
+
+}
+
+
 int contact_del_email(struct contact_t *c, const char *index);
 
 
@@ -187,9 +200,5 @@ void contact_print(struct contact_t *c){
 	printf("END CONTACT CARD\n");
 
 }
-
-
-
-
 
 
