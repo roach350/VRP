@@ -130,12 +130,40 @@ int database_contact_load(struct contact_database_t *db){
 				
 				printf("adding: %s %s\n", data_entry2, data_entry1);
 				contact_add_email(db->contact_ptr[i], data_entry2, data_entry1);
-				printf("added\n");	
+				printf("added\n");
 
+				
 			}
 
+			short m, d, y; //DOB
+			char dob_str[16];
+			readLine(dob_str, 16, db->fptr);
+			char m_str[3], d_str[3], y_str[5];
+			
+			m_str[0] = dob_str[0];
+			m_str[1] = dob_str[1];
+			m_str[2] = 0;
 
+			d_str[0] = dob_str[3];
+			d_str[1] = dob_str[4];
+			d_str[2] = 0;
 
+			y_str[0] = dob_str[6];
+			y_str[1] = dob_str[7];
+			y_str[2] = dob_str[8];
+			y_str[3] = dob_str[9];
+			y_str[4] = 0;
+
+			printf("DOB: %s %s %s\n", m_str, d_str, y_str);
+
+			m = atoi(m_str);
+			d = atoi(d_str);
+			y = atoi(y_str);
+
+				
+			contact_set_DOB(db->contact_ptr[i], d, m, y);
+
+			
 		}
 
 

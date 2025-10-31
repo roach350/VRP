@@ -32,22 +32,22 @@ void test(){
 
 	struct contact_t t;
 	contact_init(&t);
-	contact_set_name(&t, 0, "Malcolm","Harold McPherson","MeirBachtol");
+	contact_set_name(&t, 0, "Malcolm","H","M");
 
 	contact_set_nick(&t, "The Cream");
-	contact_set_title(&t, "Masterbator");
+	contact_set_title(&t, "Mr");
 	contact_set_DOB(&t, 9, 6, 1969);
-	contact_set_org(&t, "The Crips");
-	contact_set_note(&t, "If Bill Gates gets a .44 magnum, shoves it in his mouth, and blows his brains out the back of his head live on air, Alex Jones will follow suit the next day; also live on air. Challenge can also be completed by dumping a bucket of gasoline onto oneself (akin to the ALS ice bucket challenge), strapping TNT onto your body, and lighting yourself on fire.");
+	contact_set_org(&t, "VRP");
+	contact_set_note(&t, "look here look listen");
 	contact_set_address(&t, "6121 Gold Ct SW, Tumwater, WA 98512");
 
 	contact_add_number(&t, "+1-(350)-454-8100", "mobile");
 	contact_add_number(&t, "+1-(360)-403-RTFM", "pager");
-	contact_add_number(&t, "+1-(360)-420-6967", "drug phone");
+	contact_add_number(&t, "+1-(360)-420-6967", "work");
 
-	contact_add_email(&t, "m.cream@hotmail.com", "work");
+	contact_add_email(&t, "mhm@hotmail.com", "work");
 
-	contact_add_email(&t, "going.down.on.eaton.for.columbine@msn.com", "personal");
+	contact_add_email(&t, "malcolm@msn.com", "personal");
 
 	contact_print(&t);
 	contact_free(&t);
