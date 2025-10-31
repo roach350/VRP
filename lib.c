@@ -80,4 +80,25 @@ void strncmpExclude(char *dest, const char *src, int key, int len){
 }
 
 
+void readLine(char *buffer, int len, FILE *fptr){
+
+	/* assume start of line, read using fgetc until '\n' reached, stop there or when len */
+	char c;
+	for (int i = 0; i < len; i++){
+		c = fgetc(fptr);	
+		if (c == '\n' || i == len){
+			//terminate and fuck off
+			buffer[i] = 0;
+			break;
+
+		}
+
+		buffer[i] = c;		
+	}
+
+}
+
+
+
+
 

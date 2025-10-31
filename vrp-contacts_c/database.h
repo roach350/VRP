@@ -8,9 +8,7 @@
 
 struct contact_database_t{
 
-
-
-
+	struct contact_t **contact_ptr;
 	char name[MAX_NAME_LENGTH];
 	char file_name[FILE_NAME_LENGTH];
 	size_t db_size;
