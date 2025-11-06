@@ -29,7 +29,7 @@ void printHelp(){
 
 
 void test(){
-
+	/*
 	struct contact_t t;
 	contact_init(&t);
 	contact_set_name(&t, 0, "Malcolm","H","M");
@@ -51,10 +51,16 @@ void test(){
 
 	contact_print(&t);
 	contact_free(&t);
-
+	*/
 	struct contact_database_t test_db;
 	database_contact_init(&test_db, "test.db");
 	database_contact_load(&test_db);
+	size_t db_size = database_contact_size(&test_db);
+	
+	for (size_t i = 0; i < db_size; i++){
+		contact_print(database_contact_get(&test_db, i));
+	}
+	
 
 	
 }

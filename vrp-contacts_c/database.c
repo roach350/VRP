@@ -62,15 +62,7 @@ int database_contact_load(struct contact_database_t *db){
 		}
 
 
-		while(c != '#'){
-			c = fgetc(db->fptr);
-		}
-		//found #START
-		while(c != '\n'){
-			c = fgetc(db->fptr);
-		}	
-		//advance to endline
-			
+		
 		//start parsing contacts
 	
 		char first[MAX_NAME_LENGTH];
@@ -82,6 +74,16 @@ int database_contact_load(struct contact_database_t *db){
 		char data_entry2[ENTRY_LENGTH];
 		for (int i = 0; i < db->db_size; i++){
 
+			char break_str[8];
+			readLine(break_str, 8, db->fptr);
+			
+			if (strncmp(break_str, "#START", 8) == 0){
+				//printf("#START\n");
+			}else{
+				printf("Parse error, read %s\n", break_str);
+				return 0;
+			}
+	
 			printf("Loading contact %d\n", i + 1); 
 			//first middle last nickname title
 			readLine(first, MAX_NAME_LENGTH, db->fptr);
@@ -107,13 +109,13 @@ int database_contact_load(struct contact_database_t *db){
 				readLine(data_entry1, ENTRY_LENGTH, db->fptr);
 				readLine(data_entry2, ENTRY_LENGTH, db->fptr);
 				if (data_entry1[0] == '#' || data_entry2[0] == '#'){
-					printf("done adding phone numbers\n");
+					//printf("done adding phone numbers\n");
 					break;
 				}
 				
-				printf("adding: %s %s\n", data_entry1, data_entry2);
+				//printf("adding: %s %s\n", data_entry1, data_entry2);
 				contact_add_number(db->contact_ptr[i], data_entry2, data_entry1);
-				printf("added\n");	
+				//printf("added\n");	
 
 			}
 
@@ -123,14 +125,14 @@ int database_contact_load(struct contact_database_t *db){
 			while(data_entry1[0] != '#'){
 				readLine(data_entry1, ENTRY_LENGTH, db->fptr);
 				readLine(data_entry2, ENTRY_LENGTH, db->fptr);
+				
 				if (data_entry1[0] == '#' || data_entry2[0] == '#'){
-					printf("done adding email addresses\n");
+					//printf("done adding email addresses\n");
 					break;
 				}
-				
-				printf("adding: %s %s\n", data_entry2, data_entry1);
+				//printf("adding: %s %s\n", data_entry2, data_entry1);
 				contact_add_email(db->contact_ptr[i], data_entry2, data_entry1);
-				printf("added\n");
+				//printf("added\n");
 
 				
 			}
@@ -154,25 +156,32 @@ int database_contact_load(struct contact_database_t *db){
 			y_str[3] = dob_str[9];
 			y_str[4] = 0;
 
-			printf("DOB: %s %s %s\n", m_str, d_str, y_str);
+			//printf("DOB: %s %s %s\n", m_str, d_str, y_str);
 
 			m = atoi(m_str);
 			d = atoi(d_str);
-			y = atoi(y_str);
-
-				
+			y = atoi(y_str);			
 			contact_set_DOB(db->contact_ptr[i], d, m, y);
+			//parse org, note, and address
+			char org[64], note[1024], address[256];
+			readLine(org, 64, db->fptr);	
+			readLine(note, 1024, db->fptr);
+			readLine(address, 256, db->fptr);
 
+			contact_set_org(db->contact_ptr[i], org);
+			contact_set_note(db->contact_ptr[i], note);
+			contact_set_address(db->contact_ptr[i], address);
+			// #END
+			readLine(break_str, 8, db->fptr);
+			
+			if (strncmp(break_str, "#END", 8) == 0){
+				//printf("#END\n");
+			}else{
+				printf("Parse error, read %s\n", break_str);
+				return 0;
+			}
 			
 		}
-
-
-
-
-
-
-		
-
 	}else{
 		printf("Contact DB version %d is not supported in this version.\n", db->version);
 		return 0;
@@ -183,4 +192,13 @@ int database_contact_load(struct contact_database_t *db){
 	return 1;
 
 }
+
+
+size_t database_contact_size(struct contact_database_t *db){
+	return db->db_size;
+}
+struct contact_t *database_contact_get(struct contact_database_t *db, size_t index){
+	return db->contact_ptr[index];
+}
+
 
