@@ -10,6 +10,7 @@
 
 #define MAX_NAME_LENGTH 64
 
+#include <stdbool.h>
 
 
 struct contact_t{
@@ -86,7 +87,7 @@ char *contact_get_address(struct contact_t *c);
 		
 /*other*/
 void contact_print(struct contact_t *c);
-
+bool contact_search(struct contact_t *c, const char *key);
 
 
 

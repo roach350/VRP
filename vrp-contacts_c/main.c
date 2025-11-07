@@ -18,14 +18,49 @@ char *mode, *verb1, *verb2;
 #include "database.h"
 
 void printHelp(){
-	printf("vrp-contacts");
+	printf("vrp-contacts CLI interface");
 	printf("\tVer: %s\n", VRP_VERSION);
 	printf("USAGE: ./vrp-contacts <mode> <arguments>\n\n");
 	printf("Modes:\n");
-	printf("\th\t(display help)\n");  printf("\td\t(run as daemon with no output)\n"); printf("\texport <dir>\t(export contacts to location)\n"); printf("\tlist\t(list all loaded contacts)\n");
+		printf("\thelp\t(display help)\n");
+		printf("\tlist <contacts.db>\t(load contacts.db and list all entries)\n");
+		printf("\tsearch <contacts.db> <key>\t(perform a search operation on contacts.db)\n");
+}
+
+
+
+void search(const char *filename, const char *key){
+	printf("Attempting to load %s\n", filename);
+
+	struct contact_database_t test_db;
+	database_contact_init(&test_db, filename);
+	database_contact_load(&test_db);
+
+
+	struct contact_t *ptr = database_contact_search(&test_db, key);
+
+	if (ptr != NULL){
+		printf("First found \"%s\" in:\n", key);
+		contact_print(ptr);
+	}
+
 
 }
 
+void list(const char *filename){
+	printf("Attempting to load %s\n", filename);
+
+	struct contact_database_t test_db;
+	database_contact_init(&test_db, filename);
+	database_contact_load(&test_db);
+	size_t db_size = database_contact_size(&test_db);
+	
+	for (size_t i = 0; i < db_size; i++){
+		contact_print(database_contact_get(&test_db, i));
+	}
+
+
+}
 
 
 void test(){
@@ -60,7 +95,6 @@ void test(){
 	for (size_t i = 0; i < db_size; i++){
 		contact_print(database_contact_get(&test_db, i));
 	}
-	
 
 	
 }
@@ -77,25 +111,43 @@ int main(int argc, char *argv[]){
 			mode = argv[1];	
 			break;
 		case 3:
+			mode = argv[1];	
 			verb1 = argv[2];
 			break;
 		case 4:
+			mode = argv[1];	
+			verb1 = argv[2];
 			verb2 = argv[3];
 			break;
+
 	}
 	
-
+	if (argc > 4){
+		printf("Invalid argument, run 'vrp-contacts help' for help.\n"); 
+	}
 
 
 	if (strncmp(mode, "help", 4) == 0){
 		printHelp();
+		return 0;
 		
 	}
+	if (strncmp(mode, "list", 4) == 0){
+		list(verb1);
+		return 0;
+		
+	}
+	if (strncmp(mode, "search", 6) == 0){
+		search(verb1, verb2);
+		return 0;
+	}
+
 	if (strncmp(mode, "test", 4) == 0){
 		test();
-		
+		return 0;
 	}
 	
+	printf("Invalid argument, run 'vrp-contacts help' for help.\n");	
 
 
 	return 0;	

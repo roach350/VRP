@@ -193,6 +193,20 @@ int database_contact_load(struct contact_database_t *db){
 
 }
 
+struct contact_t *database_contact_search(struct contact_database_t *db, const char *key){
+
+	size_t db_size = db->db_size;
+
+	for (size_t i = 0; i < db_size; i++){
+
+		if (contact_search(db->contact_ptr[i], key)){
+			return db->contact_ptr[i];
+		}	
+
+	}
+
+	return NULL;
+}
 
 size_t database_contact_size(struct contact_database_t *db){
 	return db->db_size;

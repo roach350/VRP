@@ -1,7 +1,7 @@
 /*
-	implmentation of vrp-contacts.h
+   implmentation of vrp-contacts.h
 
-*/
+ */
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -24,16 +24,16 @@ void contact_init(struct contact_t *c){
 
 	for (int i = 0; i < ENTRIES_PER_CONTACT; i++){
 
-	
+
 		c->phone_numbers[i] = (char*)malloc(sizeof(char) * ENTRY_LENGTH);
 		c->contact_titles[i] = (char*)malloc(sizeof(char) * ENTRY_LENGTH);	
 		c->email_titles[i] = (char*)malloc(sizeof(char) * ENTRY_LENGTH);
 		c->email_addresses[i] = (char*)malloc(sizeof(char) * ENTRY_LENGTH);
-	
+
 
 
 	}
-	
+
 	for (int i = 0;  i < ENTRIES_PER_CONTACT; i++){
 		initStr(c->phone_numbers[i], ENTRY_LENGTH);
 		initStr(c->contact_titles[i], ENTRY_LENGTH);
@@ -46,7 +46,7 @@ void contact_init(struct contact_t *c){
 
 	c->phone_count = 0;
 	c->email_count = 0;
-	
+
 }
 
 
@@ -81,9 +81,9 @@ void contact_free(struct contact_t *c){
 
 void contact_set_name(struct contact_t *c, int mode, const char *f, const char *m, const char *l){
 
-		
+
 	switch(mode){
-	
+
 		case 0:
 			//all fields
 			strncpy(c->first, f, MAX_NAME_LENGTH);
@@ -137,12 +137,12 @@ void contact_set_address(struct contact_t *c, const char *addr){
 
 int contact_del_number(struct contact_t *c, int index){
 	/*
-	TODO
-	allocate new memory
-	copy contents of old array, omitting deleted element
-	free old memeory
-	
-	*/
+	   TODO
+	   allocate new memory
+	   copy contents of old array, omitting deleted element
+	   free old memeory
+
+	 */
 
 
 
@@ -161,9 +161,9 @@ int contact_add_email(struct contact_t *c, const char *email, const char *index)
 	c->email_count++;
 
 }
-		
+
 int contact_add_number(struct contact_t *c, const char *numb, const char *index){
-	
+
 	int i = c->phone_count;
 	strncpy(c->contact_titles[i], index, ENTRY_LENGTH);
 	strncpy(c->phone_numbers[i], numb, ENTRY_LENGTH);
@@ -201,4 +201,52 @@ void contact_print(struct contact_t *c){
 
 }
 
+
+bool contact_search(struct contact_t *c, const char *key){
+	
+	if (strstr(key, c->first) != NULL){
+		return true;
+	} 	
+	if (strstr(key, c->middle) != NULL){
+		return true;
+	} 	
+	if (strstr(key, c->last) != NULL){
+		return true;
+	} 	
+	if (strstr(key, c->title) != NULL){
+		return true;
+	} 	
+
+	if (strstr(key, c->nickname) != NULL){
+		return true;
+	} 	
+
+	if (strstr(key, c->org) != NULL){
+		return true;
+	} 	
+
+	if (strstr(key, c->address) != NULL){
+		return true;
+	} 	
+
+	//search phone numbers
+	for (size_t i = 0; i < c->phone_count; i++){
+		if (strstr(key, c->phone_numbers[i]) != NULL){
+			return true;
+		} 	
+
+	}
+
+
+	//search email addresses
+
+	for (size_t i = 0; i < c->email_count; i++){
+		if (strstr(key, c->email_addresses[i]) != NULL){
+			return true;
+		} 	
+
+	}
+
+	return false;
+}
 

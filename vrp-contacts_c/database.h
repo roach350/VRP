@@ -27,5 +27,4 @@ int database_contact_write(struct contact_database_t *db);
 int database_contact_copy(struct contact_database_t *db, const char *file_name);
 size_t database_contact_size(struct contact_database_t *db);
 struct contact_t *database_contact_get(struct contact_database_t *db, size_t index);
-
-
+struct contact_t *database_contact_search(struct contact_database_t *db, const char *key);
