@@ -9,7 +9,7 @@
 #include <string.h>
 
 #include "config.h"
-#include "../lib.h"
+#include "../../lib/lib.h"
 #include "vrp-contacts.h"
 
 

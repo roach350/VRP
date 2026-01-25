@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include <string.h>
 
-#include "../lib.h"
+#include "../../lib/lib.h"
 
 #include "config.h"
 #include "database.h"
