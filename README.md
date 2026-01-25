@@ -1,4 +1,4 @@
-#The VoLTE Retrofit Project
+# The VoLTE Retrofit Project
 
 ## NOTE
 This project is a work in progress and not complete by any means. No prototype currently exist but one is in development.
