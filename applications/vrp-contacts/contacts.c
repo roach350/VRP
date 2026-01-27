@@ -10,7 +10,7 @@
 
 #include "config.h"
 #include "../../lib/lib.h"
-#include "vrp-contacts.h"
+#include "contacts.h"
 
 
 

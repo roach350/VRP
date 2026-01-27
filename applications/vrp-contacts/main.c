@@ -14,7 +14,7 @@ char *mode, *verb1, *verb2;
 #include <string.h>
 #include "config.h"
 
-#include "vrp-contacts.h"
+#include "contacts.h"
 #include "database.h"
 
 void printHelp(){

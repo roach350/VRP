@@ -7,7 +7,7 @@
 
 #include "config.h"
 #include "database.h"
-#include "vrp-contacts.h"
+#include "contacts.h"
 
 
 

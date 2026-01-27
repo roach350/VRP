@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef CONTACTS_H
+#define CONTACTS_H
 /* 
 	defines functions that do operations on the contacts database
 
@@ -89,5 +89,6 @@ char *contact_get_address(struct contact_t *c);
 void contact_print(struct contact_t *c);
 bool contact_search(struct contact_t *c, const char *key);
 
+#endif
 
 
