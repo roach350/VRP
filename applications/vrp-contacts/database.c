@@ -193,19 +193,43 @@ int database_contact_load(struct contact_database_t *db){
 
 }
 
-struct contact_t *database_contact_search(struct contact_database_t *db, const char *key){
+size_t database_contact_search(struct contact_database_t *db, struct contact_t*** search_ptr, const char *key){
+
+	//we pass a tripple pointer for search_ptr becuase we need to modify the operand
+
+	size_t temp_index = 0;
+	size_t temp_size = 0;
 
 	size_t db_size = db->db_size;
 
+
+	//find number of matching entries
 	for (size_t i = 0; i < db_size; i++){
 
 		if (contact_search(db->contact_ptr[i], key)){
-			return db->contact_ptr[i];
+			temp_size++;		
 		}	
 
 	}
+	
+	
+	struct contact_t** temp_ptr = NULL;
 
-	return NULL;
+	if (temp_size > 0){
+		temp_ptr = (struct contact_t **) malloc(sizeof(struct contact_t*) * temp_size);
+
+		for (size_t i = 0; i < db_size; i++){
+			if (contact_search(db->contact_ptr[i], key)){
+				printf("adding index %i to search vector\n", temp_index);
+				temp_ptr[temp_index] = db->contact_ptr[i];
+				temp_index++;
+			}	
+
+		}	
+	}
+
+	*search_ptr = temp_ptr; //dereference and set value to temp_ptr
+	return temp_size;
 }
 
 size_t database_contact_size(struct contact_database_t *db){

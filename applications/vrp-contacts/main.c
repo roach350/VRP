@@ -37,13 +37,19 @@ void search(const char *filename, const char *key){
 	database_contact_load(&test_db);
 
 
-	struct contact_t *ptr = database_contact_search(&test_db, key);
+	struct contact_t** search_ptr; 
+	size_t search_count = database_contact_search(&test_db, &search_ptr, key);
 
-	if (ptr != NULL){
-		printf("First found \"%s\" in:\n", key);
-		contact_print(ptr);
+	printf("%i results found\n", search_count);
+	for (size_t i = 0; i < search_count; i++){
+
+		printf("Result %i of %i for \"%s\"\n", i, search_count, key);
+		contact_print(search_ptr[i]);
+
 	}
-
+	if (search_count > 0){
+		free(search_ptr);
+	}
 
 }
 

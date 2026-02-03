@@ -1,3 +1,9 @@
 vrp-contacts
 *.swp
 *.old
+ltg.db
+csv_to_db.py
+my_contacts.csv
+test.db.old
+test1.db
+my_contacts.db
