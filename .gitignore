@@ -1,4 +1,10 @@
+.stfolder*
+adaptations
+applications
+software
+*.zip
 notes
 formal*
 proposal*
 cad
+*.old

@@ -1,1 +1,0 @@
-# Communications Logger for VRP
